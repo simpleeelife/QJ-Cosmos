@@ -73,19 +73,21 @@ html, body, #root {
     font-size: 12px;
   }
 
-  /* 視点セレクタはHUDの下に移動(右上だと重なる) */
+  /* 視点セレクタはHUDの下に縦並びで配置 */
   .view-selector {
-    top: auto;
-    right: auto;
-    left: 12px;
-    bottom: auto;
     top: 140px;
-    flex-wrap: wrap;
-    max-width: calc(100% - 24px);
+    left: 12px;
+    right: auto;
+    bottom: auto;
+    flex-direction: column;
+    align-items: stretch;
+    width: auto;
+    min-width: 90px;
   }
   .view-selector button {
-    padding: 4px 8px;
+    padding: 4px 10px;
     font-size: 10px;
+    text-align: left;
   }
 
   /* 時間スライダーは notice の上に、コンパクトに */
