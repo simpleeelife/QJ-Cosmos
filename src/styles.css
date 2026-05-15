@@ -73,10 +73,10 @@ html, body, #root {
     font-size: 12px;
   }
 
-  /* 視点セレクタはHUDの下に縦並びで配置 */
+  /* 視点セレクタはHUDの右側に縦並びで配置 */
   .view-selector {
-    top: 140px;
-    left: 12px;
+    top: 12px;
+    left: 170px;
     right: auto;
     bottom: auto;
     flex-direction: column;
@@ -110,7 +110,7 @@ html, body, #root {
     font-size: 10px;
   }
 
-  /* 心宙の説明パネル(下部) */
+  /* 心宙の説明パネル(下部、タップで開閉) */
   .mobile-notice {
     display: block;
     position: absolute;
@@ -121,35 +121,60 @@ html, body, #root {
     background: rgba(0, 0, 0, 0.78);
     border: 1px solid #2a2a3a;
     color: #ccc;
-    padding: 12px 14px;
     border-radius: 8px;
     font-size: 11px;
     line-height: 1.6;
     backdrop-filter: blur(6px);
+    overflow: hidden;
   }
-  .mobile-notice-title {
-    font-size: 12px;
-    font-weight: 500;
+  .mobile-notice-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 10px 14px;
     color: #aaccff;
+    font-size: 12px;
     letter-spacing: 0.08em;
-    margin-bottom: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
   }
-  .mobile-notice p {
+  .mobile-notice-toggle .chev {
+    color: #6699ff;
+    font-size: 14px;
+    margin-left: 8px;
+  }
+  .mobile-notice.open .mobile-notice-toggle {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .mobile-notice-body {
+    padding: 10px 14px 12px;
+  }
+  .mobile-notice-body p {
     margin: 0 0 6px;
     color: #bbb;
   }
-  .mobile-notice p.dim {
+  .mobile-notice-body p.dim {
     color: #888;
     font-size: 10px;
     margin-bottom: 0;
   }
-  .mobile-notice code {
+  .mobile-notice-body code {
     background: rgba(255, 255, 255, 0.08);
     padding: 1px 4px;
     border-radius: 3px;
     font-family: ui-monospace, monospace;
     font-size: 10px;
     color: #aaccff;
+  }
+
+  /* 折りたたみ時は時間スライダーがすぐ上に来てOK */
+  .upper-pane .time-slider {
+    bottom: 60px;
   }
 }
 
