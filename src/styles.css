@@ -16,6 +16,8 @@ html, body, #root {
 .app {
   width: 100vw;
   height: 100vh;
+  /* モバイルブラウザのURLバー伸縮に追従(対応ブラウザのみ) */
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -647,9 +649,9 @@ html, body, #root {
     text-align: left;
   }
 
-  /* 時間スライダー: 心宙ノティス(折りたたみ時)の上に */
+  /* 時間スライダー: 心宙ノティス(折りたたみ時)の上に。safe-area考慮 */
   .upper-pane .time-slider {
-    bottom: 60px;
+    bottom: calc(60px + env(safe-area-inset-bottom, 0px));
     width: calc(100% - 24px);
     padding: 6px 10px;
   }
@@ -667,11 +669,11 @@ html, body, #root {
     font-size: 10px;
   }
 
-  /* 心宙の説明パネル(下部、タップで開閉) */
+  /* 心宙の説明パネル(下部、タップで開閉)。iPhone safe-area考慮 */
   .mobile-notice {
     display: block;
     position: absolute;
-    bottom: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     left: 12px;
     right: 12px;
     z-index: 12;
