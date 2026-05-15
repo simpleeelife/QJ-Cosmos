@@ -26,6 +26,66 @@ html, body, #root {
   border-bottom: 1px solid #1a1a2a;
 }
 
+.pane-title {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+  font-weight: 500;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.pane-title-en {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.mobile-notice {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .lower-pane {
+    display: none;
+  }
+  .upper-pane {
+    flex: 1 1 100%;
+    border-bottom: none;
+  }
+  .mobile-notice {
+    display: block;
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #2a2a3a;
+    color: #aaccff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+    max-width: 90%;
+    backdrop-filter: blur(4px);
+  }
+  /* モバイルでは時間スライダーが下端に来ると notice と被るので少し上げる */
+  .upper-pane .time-slider {
+    bottom: 70px;
+  }
+}
+
 .lower-pane {
   flex: 1 1 50%;
   position: relative;

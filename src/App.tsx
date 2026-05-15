@@ -17,12 +17,21 @@ export function App() {
   return (
     <div className="app">
       <div className="upper-pane">
+        <div className="pane-title">
+          天宙<span className="pane-title-en">Outer Cosmos</span>
+        </div>
         <Hud />
         <ViewSelector />
         <UpperCosmos />
         <TimeSlider />
+        <div className="mobile-notice">
+          下画面「心宙」はPC版(Chrome / Edge)でのみご利用いただけます。
+        </div>
       </div>
       <div className="lower-pane">
+        <div className="pane-title">
+          心宙<span className="pane-title-en">Inner Cosmos</span>
+        </div>
         <VaultButton />
         {hasNotes && <LayoutSelector />}
         {hasNotes && <ConnectionLegend />}
