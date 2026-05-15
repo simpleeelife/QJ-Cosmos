@@ -1,0 +1,21 @@
+# dependencies
+node_modules
+
+# build outputs
+dist
+*.tsbuildinfo
+vite.config.d.ts
+vite.config.js
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode
+.idea
+
+# local
+*.local
+.env
+.env.local
