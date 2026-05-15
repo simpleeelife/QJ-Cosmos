@@ -25,7 +25,14 @@ export function App() {
         <UpperCosmos />
         <TimeSlider />
         <div className="mobile-notice">
-          下画面「心宙」はPC版(Chrome / Edge)でのみご利用いただけます。
+          <div className="mobile-notice-title">心宙 — Inner Cosmos</div>
+          <p>
+            ローカルの <code>.md</code> ファイル(Obsidianのジャーナルなど)を3D空間に星として配置し、
+            連続日・節気・テーマ・夢などの関連性を線で可視化します。
+          </p>
+          <p className="dim">
+            File System Access API を使うため、PC版(Chrome / Edge)でのみご利用いただけます。
+          </p>
         </div>
       </div>
       <div className="lower-pane">
