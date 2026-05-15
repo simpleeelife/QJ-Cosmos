@@ -54,139 +54,7 @@ html, body, #root {
   display: none;
 }
 
-@media (max-width: 768px) {
-  .lower-pane {
-    display: none;
-  }
-  .upper-pane {
-    flex: 1 1 100%;
-    border-bottom: none;
-  }
-
-  /* HUD: タイトル下に下げて、幅を2/3に圧縮 */
-  .hud {
-    top: 40px;
-    font-size: 10px;
-    min-width: 88px;
-    max-width: 100px;
-    padding: 6px 8px;
-    background: rgba(0, 0, 0, 0.75);
-    line-height: 1.5;
-  }
-  .hud .date {
-    font-size: 11px;
-    margin-bottom: 3px;
-  }
-  .hud .row {
-    gap: 6px;
-  }
-
-  /* 視点セレクタもタイトル下、HUDの右側 */
-  .view-selector {
-    top: 40px;
-    left: 124px;
-    right: auto;
-    bottom: auto;
-    flex-direction: column;
-    align-items: stretch;
-    width: auto;
-    min-width: 70px;
-    padding: 3px;
-    background: rgba(0, 0, 0, 0.78);
-  }
-  .view-selector button {
-    padding: 3px 7px;
-    font-size: 9px;
-    text-align: left;
-  }
-
-  /* 時間スライダーは notice の上に、コンパクトに */
-  .upper-pane .time-slider {
-    bottom: 200px;
-    width: calc(100% - 24px);
-    padding: 6px 10px;
-  }
-  /* モバイルでは ‹‹ ›› (1月送り) と末尾ラベルを隠して圧縮 */
-  .upper-pane .time-slider button:nth-child(2),
-  .upper-pane .time-slider button:nth-child(6),
-  .upper-pane .time-slider .label {
-    display: none;
-  }
-  .upper-pane .time-slider button {
-    padding: 4px 8px;
-  }
-  .upper-pane .time-slider .speed {
-    padding: 4px 6px;
-    font-size: 10px;
-  }
-
-  /* 心宙の説明パネル(下部、タップで開閉) */
-  .mobile-notice {
-    display: block;
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    right: 12px;
-    z-index: 12;
-    background: rgba(0, 0, 0, 0.78);
-    border: 1px solid #2a2a3a;
-    color: #ccc;
-    border-radius: 8px;
-    font-size: 11px;
-    line-height: 1.6;
-    backdrop-filter: blur(6px);
-    overflow: hidden;
-  }
-  .mobile-notice-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    background: transparent;
-    border: none;
-    padding: 10px 14px;
-    color: #aaccff;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: left;
-    font-family: inherit;
-  }
-  .mobile-notice-toggle .chev {
-    color: #6699ff;
-    font-size: 14px;
-    margin-left: 8px;
-  }
-  .mobile-notice.open .mobile-notice-toggle {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  .mobile-notice-body {
-    padding: 10px 14px 12px;
-  }
-  .mobile-notice-body p {
-    margin: 0 0 6px;
-    color: #bbb;
-  }
-  .mobile-notice-body p.dim {
-    color: #888;
-    font-size: 10px;
-    margin-bottom: 0;
-  }
-  .mobile-notice-body code {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 1px 4px;
-    border-radius: 3px;
-    font-family: ui-monospace, monospace;
-    font-size: 10px;
-    color: #aaccff;
-  }
-
-  /* 折りたたみ時は時間スライダーがすぐ上に来てOK */
-  .upper-pane .time-slider {
-    bottom: 60px;
-  }
-}
+/* (mobile @media moved to end of file to ensure proper override) */
 
 .lower-pane {
   flex: 1 1 50%;
@@ -726,4 +594,138 @@ html, body, #root {
   color: #fff;
   background: rgba(102, 136, 255, 0.2);
   border-color: rgba(102, 136, 255, 0.5);
+}
+
+/* ======================================================================
+ * モバイル対応(画面幅 ≤ 768px)
+ * ベース定義をすべて上書きするため、ファイル末尾に配置
+ * ====================================================================== */
+
+@media (max-width: 768px) {
+  .lower-pane {
+    display: none;
+  }
+  .upper-pane {
+    flex: 1 1 100%;
+    border-bottom: none;
+  }
+
+  /* HUD: タイトル下に下げて、幅を2/3に圧縮 */
+  .hud {
+    top: 40px;
+    font-size: 10px;
+    min-width: 88px;
+    max-width: 100px;
+    padding: 6px 8px;
+    background: rgba(0, 0, 0, 0.75);
+    line-height: 1.5;
+  }
+  .hud .date {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+  .hud .row {
+    gap: 6px;
+  }
+
+  /* 視点セレクタもタイトル下、HUDの右側 */
+  .view-selector {
+    top: 40px;
+    left: 124px;
+    right: auto;
+    bottom: auto;
+    flex-direction: column;
+    align-items: stretch;
+    width: auto;
+    min-width: 70px;
+    padding: 3px;
+    background: rgba(0, 0, 0, 0.78);
+  }
+  .view-selector button {
+    padding: 3px 7px;
+    font-size: 9px;
+    text-align: left;
+  }
+
+  /* 時間スライダー: 心宙ノティス(折りたたみ時)の上に */
+  .upper-pane .time-slider {
+    bottom: 60px;
+    width: calc(100% - 24px);
+    padding: 6px 10px;
+  }
+  /* モバイルでは ‹‹ ›› (1月送り) と末尾ラベルを隠して圧縮 */
+  .upper-pane .time-slider button:nth-child(2),
+  .upper-pane .time-slider button:nth-child(6),
+  .upper-pane .time-slider .label {
+    display: none;
+  }
+  .upper-pane .time-slider button {
+    padding: 4px 8px;
+  }
+  .upper-pane .time-slider .speed {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+
+  /* 心宙の説明パネル(下部、タップで開閉) */
+  .mobile-notice {
+    display: block;
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    z-index: 12;
+    background: rgba(0, 0, 0, 0.78);
+    border: 1px solid #2a2a3a;
+    color: #ccc;
+    border-radius: 8px;
+    font-size: 11px;
+    line-height: 1.6;
+    backdrop-filter: blur(6px);
+    overflow: hidden;
+  }
+  .mobile-notice-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 10px 14px;
+    color: #aaccff;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+  }
+  .mobile-notice-toggle .chev {
+    color: #6699ff;
+    font-size: 14px;
+    margin-left: 8px;
+  }
+  .mobile-notice.open .mobile-notice-toggle {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .mobile-notice-body {
+    padding: 10px 14px 12px;
+  }
+  .mobile-notice-body p {
+    margin: 0 0 6px;
+    color: #bbb;
+  }
+  .mobile-notice-body p.dim {
+    color: #888;
+    font-size: 10px;
+    margin-bottom: 0;
+  }
+  .mobile-notice-body code {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    color: #aaccff;
+  }
 }
