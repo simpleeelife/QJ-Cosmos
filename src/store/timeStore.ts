@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
-export type Viewpoint = "free" | "fromEarth" | "fromMoon" | "fromSun";
+export type Viewpoint = "free" | "fromEarth" | "fromSun" | "topDown";
+export type PlanetScope = "inner" | "all";
 
 export const SPEED_OPTIONS: { label: string; daysPerSec: number }[] = [
   { label: "1日/秒", daysPerSec: 1 },
@@ -13,12 +14,14 @@ export const SPEED_OPTIONS: { label: string; daysPerSec: number }[] = [
 interface TimeState {
   currentDate: Date;
   viewpoint: Viewpoint;
+  planetScope: PlanetScope;
   isPlaying: boolean;
   speedDaysPerSec: number;
   setCurrentDate: (d: Date) => void;
   setFromTimestamp: (ms: number) => void;
   resetToNow: () => void;
   setViewpoint: (v: Viewpoint) => void;
+  setPlanetScope: (s: PlanetScope) => void;
   togglePlay: () => void;
   setSpeed: (daysPerSec: number) => void;
 }
@@ -26,12 +29,14 @@ interface TimeState {
 export const useTimeStore = create<TimeState>((set) => ({
   currentDate: new Date(),
   viewpoint: "free",
+  planetScope: "inner",
   isPlaying: false,
   speedDaysPerSec: 7,
   setCurrentDate: (d) => set({ currentDate: d }),
   setFromTimestamp: (ms) => set({ currentDate: new Date(ms) }),
   resetToNow: () => set({ currentDate: new Date() }),
   setViewpoint: (v) => set({ viewpoint: v }),
+  setPlanetScope: (s) => set({ planetScope: s }),
   togglePlay: () => set((s) => ({ isPlaying: !s.isPlaying })),
   setSpeed: (daysPerSec) => set({ speedDaysPerSec: daysPerSec }),
 }));

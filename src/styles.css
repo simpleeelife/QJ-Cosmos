@@ -23,7 +23,8 @@ html, body, #root {
 }
 
 .upper-pane {
-  flex: 1 1 50%;
+  flex: 1 1 auto;
+  min-height: 0;
   position: relative;
   border-bottom: 1px solid #1a1a2a;
 }
@@ -52,15 +53,65 @@ html, body, #root {
   font-weight: 400;
 }
 
-.mobile-notice {
-  display: none;
-}
-
 /* (mobile @media moved to end of file to ensure proper override) */
 
 .lower-pane {
-  flex: 1 1 50%;
+  flex: 0 0 auto;
   position: relative;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app.split .lower-pane {
+  flex: 0 0 50%;
+}
+
+.lower-content {
+  flex: 1 1 auto;
+  position: relative;
+  min-height: 0;
+}
+
+.lower-toggle-bar {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: rgba(8, 8, 16, 0.92);
+  border: none;
+  border-top: 1px solid #1a1a2a;
+  color: #ccc;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  transition: background 0.15s;
+}
+
+.lower-toggle-bar:hover {
+  background: rgba(20, 20, 35, 0.95);
+  color: #fff;
+}
+
+.lower-toggle-bar .title {
+  font-weight: 500;
+}
+
+.lower-toggle-bar .title .en {
+  margin-left: 8px;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+}
+
+.lower-toggle-bar .chev {
+  color: #6699ff;
+  font-size: 13px;
 }
 
 .lower-empty {
@@ -598,21 +649,49 @@ html, body, #root {
   border-color: rgba(102, 136, 255, 0.5);
 }
 
+/* 範囲セレクタ(内惑星/全惑星): TimeSlider 内に統合 */
+.time-slider .scope-toggle {
+  display: flex;
+  gap: 2px;
+  margin-right: 4px;
+  padding-right: 6px;
+  border-right: 1px solid #2a2a3a;
+}
+
+.time-slider .scope-toggle button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #888;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.time-slider .scope-toggle button:hover {
+  color: #ddd;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.time-slider .scope-toggle button.active {
+  color: #fff;
+  background: rgba(102, 136, 255, 0.2);
+  border-color: rgba(102, 136, 255, 0.5);
+}
+
 /* ======================================================================
  * モバイル対応(画面幅 ≤ 768px)
  * ベース定義をすべて上書きするため、ファイル末尾に配置
  * ====================================================================== */
 
 @media (max-width: 768px) {
-  .lower-pane {
-    display: none;
-  }
   .upper-pane {
-    flex: 1 1 100%;
     border-bottom: none;
   }
 
-  /* HUD: タイトル下に下げて、幅を2/3に圧縮 */
+  /* HUD: タイトル下に下げて、幅を圧縮 */
   .hud {
     top: 40px;
     font-size: 10px;
@@ -649,15 +728,16 @@ html, body, #root {
     text-align: left;
   }
 
-  /* 時間スライダー: 心宙ノティス(折りたたみ時)の上に。safe-area考慮 */
+  /* 時間スライダー: lower-toggle-bar(40px)の上に */
   .upper-pane .time-slider {
-    bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+    bottom: 12px;
     width: calc(100% - 24px);
     padding: 6px 10px;
+    flex-wrap: wrap;
   }
   /* モバイルでは ‹‹ ›› (1月送り) と末尾ラベルを隠して圧縮 */
-  .upper-pane .time-slider button:nth-child(2),
-  .upper-pane .time-slider button:nth-child(6),
+  .upper-pane .time-slider button:nth-of-type(2),
+  .upper-pane .time-slider button:nth-of-type(6),
   .upper-pane .time-slider .label {
     display: none;
   }
@@ -668,66 +748,15 @@ html, body, #root {
     padding: 4px 6px;
     font-size: 10px;
   }
+  .upper-pane .time-slider .scope-toggle button {
+    font-size: 9px;
+    padding: 2px 6px;
+  }
 
-  /* 心宙の説明パネル(下部、タップで開閉)。iPhone safe-area考慮 */
-  .mobile-notice {
-    display: block;
-    position: absolute;
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    left: 12px;
-    right: 12px;
-    z-index: 12;
-    background: rgba(0, 0, 0, 0.78);
-    border: 1px solid #2a2a3a;
-    color: #ccc;
-    border-radius: 8px;
+  /* 心宙バー: iPhone safe-area考慮 */
+  .lower-toggle-bar {
+    height: calc(40px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     font-size: 11px;
-    line-height: 1.6;
-    backdrop-filter: blur(6px);
-    overflow: hidden;
-  }
-  .mobile-notice-toggle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    background: transparent;
-    border: none;
-    padding: 10px 14px;
-    color: #aaccff;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: left;
-    font-family: inherit;
-  }
-  .mobile-notice-toggle .chev {
-    color: #6699ff;
-    font-size: 14px;
-    margin-left: 8px;
-  }
-  .mobile-notice.open .mobile-notice-toggle {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  .mobile-notice-body {
-    padding: 10px 14px 12px;
-  }
-  .mobile-notice-body p {
-    margin: 0 0 6px;
-    color: #bbb;
-  }
-  .mobile-notice-body p.dim {
-    color: #888;
-    font-size: 10px;
-    margin-bottom: 0;
-  }
-  .mobile-notice-body code {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 1px 4px;
-    border-radius: 3px;
-    font-family: ui-monospace, monospace;
-    font-size: 10px;
-    color: #aaccff;
   }
 }

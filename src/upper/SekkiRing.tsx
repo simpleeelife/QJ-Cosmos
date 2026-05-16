@@ -72,9 +72,9 @@ function SekkiMarker({
 }) {
   const ringDeg = sekkiToRingDegrees(sekkiLon);
   const rad = (ringDeg * Math.PI) / 180;
-  const inner = radius - 1.8;
-  const outer = radius + 1.8;
-  const labelDist = radius + 3.5;
+  const inner = radius - 0.7;
+  const outer = radius + 0.7;
+  const labelDist = radius + 2.0;
 
   const tickGeo = useMemo(() => {
     return new THREE.BufferGeometry().setFromPoints([
@@ -90,7 +90,7 @@ function SekkiMarker({
         <lineBasicMaterial color={color} transparent opacity={0.85} />
       </line>
       <mesh position={[Math.cos(rad) * radius, 0, Math.sin(rad) * radius]}>
-        <sphereGeometry args={[0.25, 16, 16]} />
+        <sphereGeometry args={[0.08, 12, 12]} />
         <meshBasicMaterial color={color} />
       </mesh>
       <Html

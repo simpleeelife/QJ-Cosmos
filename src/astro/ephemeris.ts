@@ -104,3 +104,38 @@ export function moonScenePosition(
     earthPos[2] + z * orbitRadius,
   ];
 }
+
+export interface PlanetInfo {
+  name: string;
+  jp: string;
+  body: Astronomy.Body;
+  semiMajorAU: number;
+  color: string;
+  size: number;
+  ring?: { inner: number; outer: number; color: string; tilt: number };
+}
+
+export const PLANETS: PlanetInfo[] = [
+  { name: "Mercury", jp: "水星", body: Astronomy.Body.Mercury, semiMajorAU: 0.387, color: "#9b9588", size: 0.45 },
+  { name: "Venus",   jp: "金星", body: Astronomy.Body.Venus,   semiMajorAU: 0.723, color: "#e8c97f", size: 0.85 },
+  { name: "Mars",    jp: "火星", body: Astronomy.Body.Mars,    semiMajorAU: 1.524, color: "#c1573a", size: 0.55 },
+  { name: "Jupiter", jp: "木星", body: Astronomy.Body.Jupiter, semiMajorAU: 5.203, color: "#d8a979", size: 1.6 },
+  {
+    name: "Saturn", jp: "土星", body: Astronomy.Body.Saturn, semiMajorAU: 9.537, color: "#e3c89b", size: 1.3,
+    ring: { inner: 1.7, outer: 2.6, color: "#bfa888", tilt: (26.7 * Math.PI) / 180 },
+  },
+];
+
+// 後方互換: 既存コードが INNER_PLANETS を参照している場合に備える
+export const INNER_PLANETS = PLANETS.slice(0, 3);
+
+export function planetScenePosition(
+  body: Astronomy.Body,
+  date: Date,
+  auScale: number
+): [number, number, number] {
+  const v = Astronomy.HelioVector(body, date);
+  const lon = Math.atan2(v.y, v.x);
+  const r = Math.sqrt(v.x * v.x + v.y * v.y) * auScale;
+  return [Math.cos(lon) * r, v.z * auScale, Math.sin(lon) * r];
+}
