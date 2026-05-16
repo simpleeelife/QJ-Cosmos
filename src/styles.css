@@ -31,24 +31,24 @@ html, body, #root {
 
 .pane-title {
   position: absolute;
-  top: 12px;
+  top: 14px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 11;
-  font-size: 13px;
+  font-size: 17px;
   letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.6);
   pointer-events: none;
   font-weight: 500;
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 10px;
 }
 
 .pane-title-en {
-  font-size: 9px;
-  letter-spacing: 0.25em;
-  color: rgba(255, 255, 255, 0.3);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.32);
   text-transform: uppercase;
   font-weight: 400;
 }
@@ -515,30 +515,30 @@ html, body, #root {
 
 .hud {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 14px;
+  left: 14px;
   z-index: 10;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid #222;
-  padding: 10px 14px;
-  border-radius: 6px;
-  font-size: 12px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 14px;
   line-height: 1.6;
   pointer-events: none;
-  min-width: 180px;
+  min-width: 220px;
 }
 
 .hud .date {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
   color: #fff;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .hud .row {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
   color: #aaa;
 }
 
@@ -616,25 +616,26 @@ html, body, #root {
 
 .view-selector {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   z-index: 10;
   display: flex;
   gap: 4px;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid #222;
-  padding: 4px;
-  border-radius: 6px;
+  padding: 6px;
+  border-radius: 8px;
 }
 
 .view-selector button {
   background: transparent;
   border: 1px solid transparent;
   color: #888;
-  padding: 4px 10px;
-  border-radius: 4px;
+  padding: 6px 14px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 13px;
+  font-family: inherit;
   transition: all 0.15s;
 }
 
@@ -649,33 +650,38 @@ html, body, #root {
   border-color: rgba(102, 136, 255, 0.5);
 }
 
-/* 範囲セレクタ(内惑星/全惑星): TimeSlider 内に統合 */
-.time-slider .scope-toggle {
+/* 範囲セレクタ(内惑星/全惑星): ViewSelector の下に横並び */
+.planet-scope-selector {
+  position: absolute;
+  top: 64px;
+  right: 14px;
+  z-index: 10;
   display: flex;
-  gap: 2px;
-  margin-right: 4px;
-  padding-right: 6px;
-  border-right: 1px solid #2a2a3a;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #222;
+  padding: 6px;
+  border-radius: 8px;
 }
 
-.time-slider .scope-toggle button {
+.planet-scope-selector button {
   background: transparent;
   border: 1px solid transparent;
   color: #888;
-  padding: 3px 8px;
-  border-radius: 4px;
+  padding: 6px 14px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 13px;
   font-family: inherit;
   transition: all 0.15s;
 }
 
-.time-slider .scope-toggle button:hover {
+.planet-scope-selector button:hover {
   color: #ddd;
   background: rgba(255, 255, 255, 0.05);
 }
 
-.time-slider .scope-toggle button.active {
+.planet-scope-selector button.active {
   color: #fff;
   background: rgba(102, 136, 255, 0.2);
   border-color: rgba(102, 136, 255, 0.5);
@@ -748,9 +754,21 @@ html, body, #root {
     padding: 4px 6px;
     font-size: 10px;
   }
-  .upper-pane .time-slider .scope-toggle button {
+
+  /* 範囲セレクタ: ViewSelector の右隣に縦並び */
+  .planet-scope-selector {
+    top: 40px;
+    left: 204px;
+    right: auto;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 3px;
+    background: rgba(0, 0, 0, 0.78);
+  }
+  .planet-scope-selector button {
+    padding: 3px 7px;
     font-size: 9px;
-    padding: 2px 6px;
+    text-align: left;
   }
 
   /* 心宙バー: iPhone safe-area考慮 */

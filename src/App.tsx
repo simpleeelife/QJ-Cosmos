@@ -3,6 +3,7 @@ import { LowerCosmos } from "./lower/LowerCosmos";
 import { Hud } from "./ui/Hud";
 import { TimeSlider } from "./ui/TimeSlider";
 import { ViewSelector } from "./ui/ViewSelector";
+import { PlanetScopeSelector } from "./ui/PlanetScopeSelector";
 import { VaultButton } from "./ui/VaultButton";
 import { ConnectionLegend } from "./ui/ConnectionLegend";
 import { NoteInfoPanel } from "./ui/NoteInfoPanel";
@@ -44,6 +45,7 @@ export function App() {
         </div>
         <Hud />
         <ViewSelector />
+        <PlanetScopeSelector />
         <UpperCosmos />
         <TimeSlider />
       </div>

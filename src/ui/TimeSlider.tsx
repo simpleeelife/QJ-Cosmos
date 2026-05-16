@@ -1,20 +1,13 @@
 import { useMemo } from "react";
-import { useTimeStore, SPEED_OPTIONS, type PlanetScope } from "../store/timeStore";
+import { useTimeStore, SPEED_OPTIONS } from "../store/timeStore";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const RANGE_DAYS = 365 * 2;
-
-const SCOPE_OPTIONS: { value: PlanetScope; label: string }[] = [
-  { value: "inner", label: "内惑星" },
-  { value: "all", label: "全惑星" },
-];
 
 export function TimeSlider() {
   const date = useTimeStore((s) => s.currentDate);
   const isPlaying = useTimeStore((s) => s.isPlaying);
   const speed = useTimeStore((s) => s.speedDaysPerSec);
-  const scope = useTimeStore((s) => s.planetScope);
-  const setScope = useTimeStore((s) => s.setPlanetScope);
   const setFromTimestamp = useTimeStore((s) => s.setFromTimestamp);
   const resetToNow = useTimeStore((s) => s.resetToNow);
   const togglePlay = useTimeStore((s) => s.togglePlay);
@@ -29,18 +22,6 @@ export function TimeSlider() {
 
   return (
     <div className="time-slider">
-      <div className="scope-toggle">
-        {SCOPE_OPTIONS.map((opt) => (
-          <button
-            key={opt.value}
-            className={scope === opt.value ? "active" : ""}
-            onClick={() => setScope(opt.value)}
-            title="惑星表示範囲"
-          >
-            {opt.label}
-          </button>
-        ))}
-      </div>
       <button
         className="play"
         onClick={togglePlay}
