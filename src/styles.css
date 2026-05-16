@@ -114,6 +114,30 @@ html, body, #root {
   font-size: 13px;
 }
 
+.lower-toggle-bar .hint {
+  font-size: 10px;
+  color: #6699ff;
+  letter-spacing: 0.08em;
+}
+
+/* PC/モバイル切り替え */
+.pc-only { display: flex; }
+.mobile-only { display: none; }
+@media (max-width: 768px) {
+  .pc-only { display: none !important; }
+  .mobile-only { display: flex; }
+}
+
+/* スマホ用の心宙バー(タップ無効、説明文付き) */
+.lower-toggle-bar-mobile {
+  cursor: default;
+  background: rgba(8, 8, 16, 0.92);
+}
+.lower-toggle-bar-mobile:hover {
+  background: rgba(8, 8, 16, 0.92);
+  color: #ccc;
+}
+
 .lower-empty {
   position: absolute;
   inset: 0;
@@ -741,9 +765,9 @@ html, body, #root {
     padding: 6px 10px;
     flex-wrap: wrap;
   }
-  /* モバイルでは ‹‹ ›› (1月送り) と末尾ラベルを隠して圧縮 */
+  /* モバイルでは ‹‹ ›› (1月送り) と末尾ラベルを隠して圧縮(「今」は残す) */
   .upper-pane .time-slider button:nth-of-type(2),
-  .upper-pane .time-slider button:nth-of-type(6),
+  .upper-pane .time-slider button:nth-of-type(5),
   .upper-pane .time-slider .label {
     display: none;
   }
@@ -771,10 +795,19 @@ html, body, #root {
     text-align: left;
   }
 
-  /* 心宙バー: iPhone safe-area考慮 */
-  .lower-toggle-bar {
-    height: calc(40px + env(safe-area-inset-bottom, 0px));
-    padding-bottom: env(safe-area-inset-bottom, 0px);
+  /* 心宙バー(モバイル): 2行縦並びでテキスト切れ防止 */
+  .lower-toggle-bar-mobile {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+    gap: 3px;
+  }
+  .lower-toggle-bar-mobile .title {
     font-size: 11px;
+  }
+  .lower-toggle-bar-mobile .hint {
+    font-size: 10px;
   }
 }

@@ -18,17 +18,28 @@ function LowerToggleBar() {
   const togglePanelMode = useUiStore((s) => s.togglePanelMode);
   const open = panelMode === "split";
   return (
-    <button
-      className="lower-toggle-bar"
-      onClick={togglePanelMode}
-      aria-expanded={open}
-      title={open ? "閉じる" : "開く"}
-    >
-      <span className="title">
-        心宙 <span className="en">Inner Cosmos</span>
-      </span>
-      <span className="chev">{open ? "▾" : "▴"}</span>
-    </button>
+    <>
+      <button
+        className="lower-toggle-bar pc-only"
+        onClick={togglePanelMode}
+        aria-expanded={open}
+        title={open ? "閉じる" : "開く"}
+      >
+        <span className="title">
+          心宙 <span className="en">Inner Cosmos</span>
+        </span>
+        <span className="chev">{open ? "▾" : "▴"}</span>
+      </button>
+      <div
+        className="lower-toggle-bar lower-toggle-bar-mobile mobile-only"
+        aria-disabled="true"
+      >
+        <span className="title">
+          心宙 <span className="en">Inner Cosmos</span>
+        </span>
+        <span className="hint">PC版でご利用いただけます</span>
+      </div>
+    </>
   );
 }
 
